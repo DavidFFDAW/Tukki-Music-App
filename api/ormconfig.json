@@ -1,0 +1,10 @@
+{
+    "type": "mysql",
+    "host": "146.59.159.40",
+    "port": 3306,
+    "username": "davidff",
+    "password": "root",
+    "database": "tukki_app",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": true
+}
