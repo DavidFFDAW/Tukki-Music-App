@@ -1,9 +1,13 @@
 import React from 'react';
+import { useRoute } from 'wouter';
 
-function Playlist ({ id, name }) {
+function Playlist () {
+    const [match, params] = useRoute('/playlist/:id');
+    const { id } = params;
+
     return (
         <div className="playlist">
-            <span>{ name }</span>
+            <h3>Playlist { id }</h3>
         </div>
     );
 }
