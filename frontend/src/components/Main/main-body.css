@@ -2,10 +2,9 @@
     position: relative;
     box-sizing: border-box;
     width: calc( 100% - 250px );
-    height: 520px;
+    height: 530px;
     margin-left: 250px;
     padding-top: 72px;
     padding-bottom: 50px;
-    padding-left: 15px;
     overflow-y: auto;
 }

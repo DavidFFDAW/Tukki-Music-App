@@ -1,27 +1,42 @@
-import React from 'react';
-import { Route, Link, useLocation } from 'wouter';
-import LogIn from './components/LogIn/login.jsx';
+import React, { Suspense } from 'react';
+import { Route, Switch } from 'wouter';
+import ROUTES from './constants/routes';
+
+import Spinner from './components/Spinner'
+import LogIn from './components/LogIn/LogIn';
+import Register from './components/Register/Register';
+import HomePage from './pages/HomePage';
+import PlaylistPage from './pages/PlaylistPage';
+import ArtistMenuPage from './pages/ArtistMenuPage';
+
 import { UserContextProvider } from './context/UserContext';
-import useUser from './hooks/useUser.js';
-import HomePage from './pages/HomePage.jsx';
-import Playlist from './components/Playlist';
+import { SongContextProvider } from './context/SongContext';
 import './App.css';
 
 function App() {
+
   const savedThemeColor = localStorage.getItem('themePreference');
+
   if (savedThemeColor) {
-    const colorTheme = savedThemeColor === 'dark' ? 'dark' : 'light';
+    const colorTheme = savedThemeColor || 'light';
     document.body.classList.add(colorTheme);
   }
-  
+
   return (
-    <React.StrictMode>
       <UserContextProvider>
-        <Route name="/login" path="/login" component={ LogIn }/>
-        <Route name="/home" path="/home" component={ HomePage }></Route>
-        <Route name="/dashboard" path="/playlist/:id" component={ Playlist }></Route>
+        <Suspense fallback={<Spinner/>}>
+          <Switch>
+            <SongContextProvider>
+              <Route path={ ROUTES.login } component={ LogIn }/>
+              <Route path={ ROUTES.register } component={ Register }/>
+
+              <Route path={ ROUTES.home } component={ HomePage }></Route>
+              <Route path={ ROUTES.playlist } component={ PlaylistPage }></Route>
+              <Route path={ ROUTES.artistmenu } component={ ArtistMenuPage }></Route>
+            </SongContextProvider>
+          </Switch>
+        </Suspense>
       </UserContextProvider>
-    </React.StrictMode>
   );
 }
 export default App;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 import { Data } from '../../data-faker';
+import { Link } from 'wouter';
 import './cards.css';
 
 export default function PlaylistsCards(){
@@ -9,16 +10,19 @@ export default function PlaylistsCards(){
 
     useEffect(_ => {
         setPlaylist(Data.playlists);
-        console.log('Ahora cargaria los datos en la vista')
     },[]);
 
     return (
         <>
-            <h3 className="playlists-title">Tus playlist</h3>
+            <div className="flex flex-center">
+                <h3 className="playlists-title">Tus playlist</h3>
+            </div>
             <div className="grid-playlists">
                 {
                     playlists.map(playlist => {
-                        return <Card key={playlist.id} title={playlist.name} content={playlist.description || 'Playlist'}></Card>
+                        return <Link href={'/playlist/' + playlist.id} key={playlist.id}>                              
+                            <Card id={playlist.id} title={playlist.name} content={playlist.description || 'Playlist'}></Card>
+                        </Link>
                     })
                 }
             </div>

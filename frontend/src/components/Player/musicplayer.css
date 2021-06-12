@@ -17,11 +17,17 @@
     border-radius: 20px;
     margin: 15px auto;
 }
-.player progress::-webkit-progress-bar {
+body.dark .player progress::-webkit-progress-bar {
     background-color: var(--tukki-subtitles)
 }
-.player progress::-webkit-progress-value {
+body.dark .player progress::-webkit-progress-value {
     background-color: var(--tukki-yellow)
+}
+.player progress::-webkit-progress-bar {
+    background-color: var(--tukki-solid-black)
+}
+.player progress::-webkit-progress-value {
+    background-color: var(--tukki-test-blue)
 }
 body.dark .player{
     background-color: var(--tukki-intense-black);

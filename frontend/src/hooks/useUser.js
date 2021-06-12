@@ -1,33 +1,46 @@
 import { useContext, useCallback } from 'react';
-import { useLocation } from 'wouter';
 import Context from './../context/UserContext';
-import loginService from '../services/loginService';
-import { Data } from '../data-faker';
+import attemptLogIn from '../services/loginService';
+import attemptRegister from '../services/registerService';
+import SessionStorageService from '../services/session.storage.service';
 
 
 export default function useUser(){
-    
-    const {jwt, setJWT} = useContext(Context);
-    const { user, setUser } = useContext(Context)
-    const [, navigate] = useLocation();
 
-    const login = useCallback(({ username, password }) => {
-        const logged = loginService({ username, password })
-        if(!logged) navigate('/login');
-        if(logged){
-            setUser({ username, avatar: Data.user.avatar });
-            setJWT(logged);
-        }
+    const { jwt, setJWT } = useContext(Context);
+
+    const login = useCallback( ({ username, password }) => {
+        attemptLogIn({username, password})
+            .then(jwt => {
+                SessionStorageService.addToken(jwt);
+                setJWT(jwt);
+            })
+            .catch(err => {
+                SessionStorageService.removeToken();
+                console.error(err);
+            });
     }, [setJWT]);
 
-    const logout = useCallback(() => {
+    const logout = useCallback( () => {
+        SessionStorageService.removeToken('jwt');
         setJWT(null);
-    },[]);
+    }, [setJWT]);
+
+    const register = useCallback( credentials => {
+      if(credentials.password !== credentials.repeatPassword){
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+      attemptRegister(credentials).then(jwt => {
+          SessionStorageService.addToken(jwt);
+          setJWT(jwt);
+      })
+    },[setJWT]);
 
     return {
-        isLoggedIn: Boolean(jwt),
+        isLogged: Boolean(jwt),
         login,
         logout,
-        user
-    };
+        register,
+    }
 }

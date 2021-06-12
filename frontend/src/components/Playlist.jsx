@@ -1,14 +1,42 @@
-import React from 'react';
-import { useRoute } from 'wouter';
+import React, { useEffect, useState } from 'react';
+import { Data } from '../data-faker';
+import Song from './Song';
+import './playlists.css';
+import UserInfo from './UserInfo/UserInfo';
+import getSongs from '../services/playlist.service';
 
-function Playlist () {
-    const [match, params] = useRoute('/playlist/:id');
-    const { id } = params;
+function Playlist ({ id }) {
+
+    const [playlistData, setPlaylistData] = useState('Loading...');
+    const [content, setContent] = useState([]);
+
+    useEffect(_ => {
+        setPlaylistData(Data.playlists.find(playlist => playlist.id === +id));
+        // const songs = Data.songs.filter(playlists => playlists.playlist_id === +id);
+        getSongs().then(songs => {
+            setContent(songs);
+        });
+    },[]);
 
     return (
-        <div className="playlist">
-            <h3>Playlist { id }</h3>
-        </div>
+        <>
+            <UserInfo name={ playlistData.name } description={ playlistData.description }></UserInfo>
+            <div className="playlist-container">
+                <div className="flex flex-space-btw space upper">
+                    <span className="width-auto">Play</span>
+                    <span>Nombre</span>
+                    <span>Artista</span>
+                    <span>URL</span>
+                </div>
+                <div className="song-list">
+                    {
+                        content.map(song => {
+                            return <Song key={song.id} title={song.name} artist={song.author} uri={song.uri}></Song>
+                        })
+                    }
+                </div>        
+            </div>
+        </>
     );
 }
 

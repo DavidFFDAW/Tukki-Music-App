@@ -6,7 +6,7 @@ const user = {
 }
 
 const playlists = [
-    { id: 1, name: 'Every Song I Have', description: 'Una playlist influenciada por nadad' },
+    { id: 1, name: 'Every Song I Have', description: 'Una playlist influenciada por nadad bla bla bla bla bla bla bla bla' },
     { id: 2, name: 'My Playlist' },
     { id: 3, name: 'Spanish Songs' },
     { id: 4, name: 'Till you can no more' },

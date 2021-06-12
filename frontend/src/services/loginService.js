@@ -1,9 +1,14 @@
-import { Data } from '../data-faker';
-import React from 'react';
+import HttpService from './http.service';
+const endpoint = 'http://localhost:8350';
 
-export default function login ({ username, password }){
-    if(username === Data.user.name && password === Data.user.password){
-        return true;
+async function attemptLogIn ({ username, password }){
+    try{
+        const { token } = await HttpService.post(`${endpoint}/login`, { username, password });
+        return token;
+        
+    } catch (error){
+        console.error(error);
     }
-    return false;
 }
+
+export default attemptLogIn;

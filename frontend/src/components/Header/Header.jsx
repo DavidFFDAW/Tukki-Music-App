@@ -3,6 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ColorModeButton from './LightDarkMode';
 import useUser from '../../hooks/useUser';
 import './header.css';
+import { Link } from 'wouter';
 
 export default function Header(){
     const colorTheme = localStorage.getItem('themePreference');
@@ -10,7 +11,6 @@ export default function Header(){
     const { user } = useUser();
 
     const styles = {
-        backgroundImage: `url(${ user.avatar })`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -36,9 +36,13 @@ export default function Header(){
                     <button type="submit" className="search-button"><SearchIcon/></button>
                 </form>
             </div>
+            <div>
+                <Link href="/home" className="btn btn-router">Inicio</Link>
+            </div>
             <div className="flex flex-center user">
+                <Link href="/artist" className="btn btn-router">Menu Artista</Link>
                 <div className="user-img" style={styles}></div>
-                <span>{ user.name }</span>
+                <span>Username</span>
                 <div className="user-options">
                     <ColorModeButton isDarkMode={isDarkMode} handleDarkMode={handleDarkMode}/>
                     <button className="link">Cerrar Sesión</button>

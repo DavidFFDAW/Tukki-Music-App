@@ -1,14 +1,17 @@
-import React,{useState} from 'react';
-import { user } from '../data-faker';
-import { Data } from '../data-faker';
+import React,{useEffect, useState} from 'react';
 
 const Context = React.createContext({});
 
 export function UserContextProvider({ children }){
-    const [jwt, setJWT] = useState([]);
-    const [user, setUser] = useState(Data.user);
 
-    return (<Context.Provider value={{ jwt,setJWT,user,setUser }}>
+    const [jwt, setJWT] = useState(
+        () => window.sessionStorage.getItem('jwt')
+    );
+
+    return (<Context.Provider value={{ 
+        jwt,
+        setJWT
+    }}>
         { children }
     </Context.Provider>);
 }

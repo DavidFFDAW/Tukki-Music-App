@@ -29,7 +29,7 @@ body.dark .sidenav{ background-color: var(--tukki-black); }
 .sidenav .sidenav-img-container{
     width: 100%;
     padding: 120px 0;
-    background-color: var(--tukki-blue);
+    background-color: var(--tukki-white);
     border-bottom: 2px solid var(--tukki-black);
 }
 body.dark .sidenav-img-container{
@@ -49,6 +49,9 @@ body.dark .sidenav-img-container{
     overflow-y: auto;
 }
 .sidenav .sidenav-playlists-container{
+    background-color: var(--tukki-test-blue);
+}
+body.dark .sidenav .sidenav-playlists-container{
     background-color: var(--tukki-bg-grey);
 }
 .sidenav .sidenav-playlists-container .playlist{
@@ -62,22 +65,28 @@ body.dark .sidenav-img-container{
     margin-bottom: 10px;
     text-align: left;
     text-transform: uppercase;
-    box-shadow: 0 0 8px var(--tukki-black);
+    /*box-shadow: 0 0 8px var(--tukki-black);*/
     cursor: pointer;
     transition: all 0.3s;
 }
+.quicksand{
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
 .sidenav .sidenav-playlists-container .playlist:hover{
-    background-color: var(--tukki-inputs);
-    box-shadow: 0 0 10px var(--tukki-intense-black);
+    background-color: var(--tukki-blue);
+    color: var(--tukki-white);
+    /*box-shadow: 0 0 10px var(--tukki-intense-black);*/
 }
 body.dark .sidenav .sidenav-playlists-container .playlist{
     background-color: var(--tukki-black);
-    color: var(--tukki-white);
-    border: none;
+    color: var(--tukki-yellow);
     font-weight: 600;
 }
 body.dark .sidenav .sidenav-playlists-container .playlist:hover{
-    background-color: var(--tukki-bg-grey);
-    color: var(--tukki-white);
+    background-color: var(--tukki-yellow);
+    color: var(--tukki-solid-intense-black);
     box-shadow: 0 0 30px var(--tukki-intense-black);
 }
