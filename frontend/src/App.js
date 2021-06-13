@@ -3,7 +3,7 @@ import { Route, Switch } from 'wouter';
 import ROUTES from './constants/routes';
 
 import Spinner from './components/Spinner'
-import LogIn from './components/LogIn/LogIn';
+import LogIn from './components/LogIn/login';
 import Register from './components/Register/Register';
 import HomePage from './pages/HomePage';
 import PlaylistPage from './pages/PlaylistPage';
