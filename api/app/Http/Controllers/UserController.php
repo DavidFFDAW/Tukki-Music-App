@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email','password');
 
         if (!$credentials) return response()->json([
             'error' => 'Needed fields might be missing',

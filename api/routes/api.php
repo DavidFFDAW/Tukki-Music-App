@@ -15,18 +15,16 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/users', [ApiController::class, 'getUsers']);
 
-Route::get('/csrf', [ApiController::class, 'getCSRF']);
-
-Route::group(['middleware' => ['api']], function () {
-
+Route::group(['middleware' => 'cors'], function () {
+    
     Route::post('/login', [UserController::class, 'authenticate']);
     Route::post('/register', [UserController::class, 'register']);
     Route::get('/songs', [ApiController::class, 'getSongs']);
 
     Route::group(['middleware' => ['jwt']], function () {
 
-        Route::get('/users', [UserController::class, 'getAllUsers']);
         Route::post('/user', [UserController::class, 'getAuthenticatedUser']);
     });
 
