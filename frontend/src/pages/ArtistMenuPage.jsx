@@ -1,26 +1,19 @@
 import React from 'react';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 import Routes from '../constants/routes';
-
-import Header from '../components/Header/Header';
-import Box from '../components/Box/Box';
 
 
 export default function ArtistMenu(){
     return (
         <>
-        <Header></Header>
             <div className="flex flex-center">
                 
-                <div className="pad">
-                    <div>
-                        <Link href={ Routes.myalbums } className="btn btn-transparent width-100">Ver Albumes</Link>
+                <div className="box pad">
+                    <div className="flex flex-center up">
+                        <Link to={ Routes.artistAlbums } className="btn btn-transparent down width-100">Gestionar Mis Albumes</Link>
                     </div>
-                    <div>
-                        <Link href={ Routes.albumcreate } className="btn btn-transparent down width-100">Crear Album</Link>
-                    </div>
-                    <div>
-                        <Link href={ Routes.uploadsong } className="btn btn-transparent down width-100">Subir Canción</Link>
+                    <div className="flex flex-center up">
+                        <Link to={ Routes.artistSongs } className="btn btn-transparent down width-100">Gestionar Mis Canciones</Link>
                     </div>
                 </div>
             </div>

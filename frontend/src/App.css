@@ -86,10 +86,11 @@ h3.non-upper-title {
 }
 .pad{
   box-sizing: border-box;
-  padding-top: 120px;
-  margin-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 150px;
+  padding-bottom: 130px;
 }
+.pad-top{ box-sizing: border-box; padding-top: 60px;}
+.pad-down{ box-sizing: border-box; padding-bottom: 120px;}
 .rounded-box{
   border-radius: 20px;
   background-color: var(--tukki-blue);
@@ -125,7 +126,10 @@ body.dark ::-webkit-scrollbar-thumb {
   outline: none;
   color: white;
   cursor: pointer;
+  text-align: center;
 }
+.btn-small{ padding: 5px 8px; }
+
 .btn-router{
   border-radius: 5px;
   background-color: var(--tukki-grey-bg);

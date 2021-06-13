@@ -7,7 +7,6 @@ export default function ({ children }){
         <Popup
         trigger={ children }
         modal
-        nested
         >
             {close => (
             <div className="modal">

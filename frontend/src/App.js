@@ -1,17 +1,25 @@
 import React, { Suspense } from 'react';
-import { Route, Switch } from 'wouter';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import ROUTES from './constants/routes';
 
 import Spinner from './components/Spinner'
-import LogIn from './components/LogIn/login';
+import LogIn from './components/LogIn/LogIn';
 import Register from './components/Register/Register';
+import Header from './components/Header/Header';
+import MusicPlayer from './components/MusicPlayer/Player';
+
 import HomePage from './pages/HomePage';
 import PlaylistPage from './pages/PlaylistPage';
 import ArtistMenuPage from './pages/ArtistMenuPage';
+import ArtistAlbums from './pages/ArtistAlbums';
+import ArtistSongs from './pages/ArtistSongs';
+import ArtistSongUpload from './pages/ArtistSongUpload';
+import ArtistAlbumCreation from './pages/ArtistAlbumCreation';
 
 import { UserContextProvider } from './context/UserContext';
 import { SongContextProvider } from './context/SongContext';
 import './App.css';
+
 
 function App() {
 
@@ -25,16 +33,28 @@ function App() {
   return (
       <UserContextProvider>
         <Suspense fallback={<Spinner/>}>
-          <Switch>
-            <SongContextProvider>
-              <Route path={ ROUTES.login } component={ LogIn }/>
-              <Route path={ ROUTES.register } component={ Register }/>
-
-              <Route path={ ROUTES.home } component={ HomePage }></Route>
-              <Route path={ ROUTES.playlist } component={ PlaylistPage }></Route>
-              <Route path={ ROUTES.artistmenu } component={ ArtistMenuPage }></Route>
-            </SongContextProvider>
-          </Switch>
+          <Router>
+            <Switch>
+              <SongContextProvider>
+                <Route path='/' exact component={ LogIn }></Route>
+                <Route path={ ROUTES.login } exact component={ LogIn }/>
+                <Route path={ ROUTES.register } exact component={ Register }/>
+                <Route path="/user">
+                  <Header></Header>
+                  <Switch>
+                    <Route path={ ROUTES.home } exact component={ HomePage }></Route>
+                    <Route path={ ROUTES.playlist } exact component={ PlaylistPage }></Route>
+                    <Route path={ ROUTES.artistmenu } exact component={ ArtistMenuPage }></Route>
+                    <Route path={ ROUTES.artistAlbums } exact component={ ArtistAlbums }></Route>
+                    <Route path={ ROUTES.artistSongs } exact component={ ArtistSongs }></Route>
+                    <Route path={ ROUTES.albumCreate } exact component={ ArtistAlbumCreation }></Route>
+                    <Route path={ ROUTES.songUpload } exact component={ ArtistSongUpload }></Route>
+                  </Switch>
+                  <MusicPlayer width="100%"></MusicPlayer>
+                </Route>
+              </SongContextProvider>
+            </Switch>
+          </Router>
         </Suspense>
       </UserContextProvider>
   );

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Data } from '../data-faker';
 import Song from './Song';
-import './playlists.css';
 import UserInfo from './UserInfo/UserInfo';
 import getSongs from '../services/playlist.service';
+import './playlists.css';
 
 function Playlist ({ id }) {
 
@@ -12,10 +12,8 @@ function Playlist ({ id }) {
 
     useEffect(_ => {
         setPlaylistData(Data.playlists.find(playlist => playlist.id === +id));
-        // const songs = Data.songs.filter(playlists => playlists.playlist_id === +id);
-        getSongs().then(songs => {
-            setContent(songs);
-        });
+        const songs = Data.songs.filter(playlists => playlists.playlist_id === +id);
+        setContent(songs);
     },[]);
 
     return (

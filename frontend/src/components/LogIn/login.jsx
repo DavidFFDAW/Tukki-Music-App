@@ -1,6 +1,7 @@
 import React,{ useEffect, useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import { Link, useHistory } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
+import routes from '../../constants/routes';
 import './styles.css';
 
 
@@ -8,15 +9,15 @@ export default function LogIn({ onLogin }){
 
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
-    const [, navigate] = useLocation();
     const { login, isLogged } = useUser();
+    const history = useHistory();
 
     useEffect(_ => {
         if (isLogged){
-            navigate('/');
+            history.push(routes.home);
             onLogin && onLogin();
         }
-    },[isLogged, navigate, onLogin]);
+    },[isLogged, onLogin]);
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
@@ -46,7 +47,7 @@ export default function LogIn({ onLogin }){
                                     <input type="password" onChange={ (ev) => setPassword(ev.target.value)} value={password}/>
                                 </div>
                                 <div className="flex flex-space-btw btn-div">
-                                    <Link type="button" className="btn btn-transparent" href="/register">Registrarme</Link>
+                                    <Link type="button" className="btn btn-transparent" to="/register">Registrarme</Link>
                                     <button type="submit" className="btn btn-primary">Iniciar sesión</button>
                                 </div>
                                 <div className="flex flex-center">

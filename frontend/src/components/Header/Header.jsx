@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ColorModeButton from './LightDarkMode';
 import useUser from '../../hooks/useUser';
+import routes from '../../constants/routes';
+import { Link } from 'react-router-dom';
 import './header.css';
-import { Link } from 'wouter';
 
 export default function Header(){
     const colorTheme = localStorage.getItem('themePreference');
@@ -37,16 +38,16 @@ export default function Header(){
                 </form>
             </div>
             <div>
-                <Link href="/home" className="btn btn-router">Inicio</Link>
+                <Link to={ routes.home } className="btn btn-router">Inicio</Link>
+                <Link to={ routes.artistmenu } className="btn btn-router">Menu Artista</Link>
             </div>
             <div className="flex flex-center user">
-                <Link href="/artist" className="btn btn-router">Menu Artista</Link>
-                <div className="user-img" style={styles}></div>
-                <span>Username</span>
-                <div className="user-options">
-                    <ColorModeButton isDarkMode={isDarkMode} handleDarkMode={handleDarkMode}/>
-                    <button className="link">Cerrar Sesión</button>
-                </div>
+                    <div className="user-img" style={styles}></div>
+                    <span>Username</span>
+                    <div className="user-options">
+                        <ColorModeButton isDarkMode={isDarkMode} handleDarkMode={handleDarkMode}/>
+                        <button className="link">Cerrar Sesión</button>
+                    </div>
             </div>
         </div>
     )

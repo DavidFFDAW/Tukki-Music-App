@@ -15,7 +15,7 @@ function PlaylistSidenav () {
 
             <div className="sidenav">
                 <div className="sidenav-img-container">
-                    <img src="http://localhost:3000/tukki.png"></img>
+                    <img src="http://localhost:3500/tukki.png"></img>
                 </div>
                 <div className="sidenav-playlists-container">
                     <div className="playlist"><span className="quicksand">Every Song I know</span></div>
