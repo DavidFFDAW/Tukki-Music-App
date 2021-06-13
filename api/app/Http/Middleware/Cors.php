@@ -20,9 +20,9 @@ class Cors
         $request->header("Access-Control-Allow-Credentials", "true");
         $request->header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
         $request->header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-        
+
         $response = $next($request);
-        
+
         $response->headers->set("Access-Control-Allow-Origin", "*");
         $response->headers->set("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
         $response->headers->set('Content-Type', 'application/json');
