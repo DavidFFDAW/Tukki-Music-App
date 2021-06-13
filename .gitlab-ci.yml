@@ -34,3 +34,4 @@ deploy-prod-job:
     - ssh -o StrictHostKeyChecking=no root@$VPS_DEPLOY "cd /root/tukki-app/api && php artisan serve"
   only:
     - main
+    
