@@ -1,10 +1,24 @@
 import React,{ useState } from 'react';
 import User from './User';
-import { Data } from '../data-faker';
 import { Button } from '@material-ui/core';
+import { useEffect } from 'react';
+import HttpService from '../services/http.service';
 
 export default function UsersPanel(){
-    const [users, setUsers] = useState(Data.users);
+    const [users, setUsers] = useState([]);
+
+    useEffect(_ => {
+        const getUsersWithPetition = async () => {
+            try{
+                const { users } = await HttpService.get('http://192.168.1.56:8350');
+                setUsers(users);
+
+            } catch(err){
+                console.error(err.message);
+            }
+        }
+        getUsersWithPetition();
+    },[])
 
     return (
         <div className="flex center">
@@ -24,6 +38,7 @@ export default function UsersPanel(){
                             <Button colors="primary">Hello World</Button>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
