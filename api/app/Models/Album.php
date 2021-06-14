@@ -13,6 +13,9 @@ class Album extends Model
 
     public function songs()
     {
-        return $this->belongsToMany(AlbumSong::class);
+        return $this->hasManyThrough(
+            Songs::class,
+            AlbumSong::class
+        );
     }
 }

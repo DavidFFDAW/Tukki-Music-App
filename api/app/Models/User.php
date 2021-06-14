@@ -47,6 +47,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Playlist::class);
     }
 
+    public function contacts()
+    {
+        return $this->belongsToMany(Users::class)->using(UserContacts::class);
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

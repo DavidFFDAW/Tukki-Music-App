@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\AdminApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,16 @@ Route::group(['middleware' => 'cors'], function () {
 
 
         Route::get('/user', [UserController::class, 'getAuthenticatedUser']);
+        Route::put('/user/update', [UserController::class, 'updateUserInfo']);
+        Route::put('/user/listened', [UserController::class, 'updateLastListenedTo']);
+
+
+        Route::group(['middleware' => ['admin']], function () {
+
+            Route::post('/admin/login', [AdminApiController::class, 'authenticate']);
+            Route::get('/admin/users', [AdminApiController::class, 'getUsersWithPetitions']);
+            Route::put('/admin/users', [AdminApiController::class, 'updateUserPetition']);
+        });
     });
 
 

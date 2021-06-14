@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'cors' => \App\Http\Middleware\Cors::class,
         'jwt' => \App\Http\Middleware\JwtMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

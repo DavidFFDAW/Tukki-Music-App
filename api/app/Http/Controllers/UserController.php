@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Utils\StorageImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -86,5 +87,50 @@ class UserController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('user', 'token'), 201);
+    }
+
+    public function updateUserInfo(Request $request)
+    {
+
+        $userFromToken = $this->getUserFromToken($request);
+
+        if (!$userFromToken) return response()->json([
+            'error' => 'User has not been found'
+        ], 404);
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
+            'password' => 'required|min:6',
+            'repeatPassword' => 'required|min:6',
+        ]);
+
+        if ($validator->fails()) return response()->json([
+            'error' => 'Some field is missing or is incorrect'
+        ], 400);
+
+        if ($request->password !== $request->repeatPassword) return response()->json([
+            'error' => 'Passwords are not Equals',
+        ], 400);
+
+        if ($request->hasFile('avatar')) {
+            //$path = StorageImageService::storeNewUserAvatar();
+            //$userFromToken->image = $path;
+        }
+        $userFromToken->username = $request->username;
+        $userFromToken->password = Hash::make($request->password);
+        $userFromToken->updated_at = now();
+        $userFromToken->save();
+    }
+
+    public function updateLastListenedTo(Request $request)
+    {
+        $userFromToken = $this->getUserFromToken($request);
+
+        if (!$request->song_name) return response()->json([
+            'error' => 'Not song indicated',
+        ], 400);
+
+        $userFromToken->last_listened_to = $request->song_name;
+        $userFromToken->save();
     }
 }
