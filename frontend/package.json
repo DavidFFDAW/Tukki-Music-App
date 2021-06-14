@@ -17,6 +17,7 @@
     "web-vitals": "^1.1.1",
     "wouter": "^2.7.4"
   },
+  "proxy": "http://192.168.1.56:8350",
   "scripts": {
     "start": "react-scripts start -p 3500",
     "build": "react-scripts build",

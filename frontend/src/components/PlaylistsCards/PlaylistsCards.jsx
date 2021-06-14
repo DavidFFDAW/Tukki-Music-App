@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
-import { Data } from '../../data-faker';
+import HttpService from '../../services/http.service';
 import './cards.css';
 
 export default function PlaylistsCards(){
 
     const [playlists, setPlaylist] = useState([]);
 
-    useEffect(_ => {
-        setPlaylist(Data.playlists);
+    useEffect(async () => {
+        const myPlaylists = await HttpService.get('http://192.168.1.56:8350/api/myplaylists');
+        const { playlists } = myPlaylists;  
+        console.log(myPlaylists);      
+        console.log(playlists);      
+        setPlaylist(playlists);
     },[]);
 
     return (

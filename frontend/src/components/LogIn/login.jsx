@@ -39,8 +39,8 @@ export default function LogIn({ onLogin }){
                                 </p>
 
                                 <div>
-                                    <label>Correo o Username:</label>
-                                    <input type="text" autoComplete="current-password" onChange={ (ev) => setUsername(ev.target.value) } value={username}/>
+                                    <label>Correo:</label>
+                                    <input type="email" autoComplete="current-password" onChange={ (ev) => setUsername(ev.target.value) } value={username}/>
                                 </div>
                                 <div>
                                     <label>Contraseña:</label>

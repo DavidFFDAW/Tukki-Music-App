@@ -1,3 +1,4 @@
+import sessionStorageService from "./session.storage.service";
 
 export default class HttpService {
     
@@ -9,11 +10,19 @@ export default class HttpService {
     static delete = endpoint => this._makeFetchRequest(endpoint,'DELETE');
 
     static _makeFetchRequest(url,method,data){
+        const token = sessionStorageService.getToken();
         const options = {
             method: method,
             mode: 'cors',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ',
+            },
         };
+        if(token){
+            options.headers = {...options.headers, 'Authorization': 'Bearer ' + token };
+        }
         if(data){
             options.body = JSON.stringify(data);
         }

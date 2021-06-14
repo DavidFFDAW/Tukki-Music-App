@@ -18,6 +18,7 @@ import ArtistAlbumCreation from './pages/ArtistAlbumCreation';
 
 import { UserContextProvider } from './context/UserContext';
 import { SongContextProvider } from './context/SongContext';
+import checkAuth from './hooks/useAuth';
 import './App.css';
 
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path={ ROUTES.login } exact component={ LogIn }/>
                 <Route path={ ROUTES.register } exact component={ Register }/>
                 <Route path="/user">
+                  { checkAuth() }
                   <Header></Header>
                   <Switch>
                     <Route path={ ROUTES.home } exact component={ HomePage }></Route>

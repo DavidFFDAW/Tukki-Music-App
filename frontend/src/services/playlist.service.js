@@ -1,10 +1,9 @@
 import HttpService from './http.service';
-const endpoint = 'http://localhost:8350';
+const endpoint = 'http://192.168.1.56:8350';
 
-async function getSongs(){
-    const {response} = await HttpService.get(`${endpoint}/songs`);
-    console.log(response);
-    return response;
+async function getMyPlaylist(){
+    const { playlists } = await HttpService.get(`${endpoint}/api/myplaylists`);
+    return playlists;
 }
 
-export default getSongs();
+export default getMyPlaylist();

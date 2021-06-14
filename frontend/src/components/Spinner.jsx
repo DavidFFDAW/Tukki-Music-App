@@ -3,6 +3,9 @@ import './spinner.css'
 
 export default function Spinner () {
   return (
-    <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div className="spinner">
+      <img src="https://192.168.1.56:8350/tukki.png"></img>
+
+    </div>
   );
 }
