@@ -13,7 +13,6 @@ class ApiController extends Controller
     public function getSongs()
     {
         $songs = Song::all();
-        ddd($songs);
 
         return response()->json(['response' => $songs], 200);
     }
