@@ -3,6 +3,7 @@ const appRoute = {
     register: '/register',
     home: '/user/home',
     playlist: '/user/playlist/:id',
+    mixCreate: '/user/playlist/new',
     artistmenu: '/user/artist/menu',
     artistAlbums: '/user/artist/albums',
     artistSongs: '/user/artist/songs',

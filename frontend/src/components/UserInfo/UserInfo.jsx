@@ -2,10 +2,10 @@ import React from 'react';
 import Popup from '../Popup';
 import './userInfo.css';
 
-export default function UserInfo({ children, name, description}){
+export default function UserInfo({ children, img, name, description}){
     return (
         <div className="info flex flex-space-btw-not-align">
-            <div className="info-image"></div>
+            <img className="info-image" src={img ? img : 'http://localhost:3000/user.png' }></img>
             <div className="info-data">
                 <h3 className="non-upper-title">{ name }</h3>
                 <p className="description">{ description }</p>

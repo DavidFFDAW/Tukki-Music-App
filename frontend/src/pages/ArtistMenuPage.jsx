@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Routes from '../constants/routes';
+import checkAuth from "../hooks/useAuth";
 
 
 export default function ArtistMenu(){
+    checkAuth();
+
     return (
         <>
             <div className="flex flex-center">

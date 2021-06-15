@@ -3,13 +3,12 @@ import React,{ useState } from 'react';
 const SongContext = React.createContext({});
 
 export function SongContextProvider({ children }){
-    const [songPlaying, setSongPlaying] = useState([
-        'http://localhost:3500/songs/rollins.mp3',
-        'http://localhost:3500/songs/cesaro.mp3',
-        'http://localhost:3500/songs/bianca.mp3',
-    ]);
+    const [ currentMix, setCurrentMix ] = useState([]);
+    const [ tukkiMixes, setTukkiMixes ] = useState([]);
 
-    return (<SongContext.Provider value={{ songPlaying, setSongPlaying }}>
+    return (<SongContext.Provider value={{ currentMix, setCurrentMix,
+        tukkiMixes, setTukkiMixes
+    }}>
         { children }
     </SongContext.Provider>);
 }

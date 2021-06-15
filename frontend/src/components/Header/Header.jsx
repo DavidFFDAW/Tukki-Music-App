@@ -3,15 +3,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import ColorModeButton from './LightDarkMode';
 import useUser from '../../hooks/useUser';
 import routes from '../../constants/routes';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Spinner from '../Spinner';
 import './header.css';
 
 export default function Header(){
+    const history = useHistory();
     const colorTheme = localStorage.getItem('themePreference');
     const [isDarkMode,setDarkMode] = useState(colorTheme === 'dark');
     const [loading, setLoading] = useState(false);
-    const { user, setCurrentUser } = useUser();
+    const { user, setCurrentUser, logout } = useUser();
 
     useEffect(_ => {
         setLoading(true);
@@ -20,14 +21,16 @@ export default function Header(){
         });
     },[])
 
-    if(loading) return (
-        <Spinner></Spinner>
-    );
-
     const styles = {
+        backgroundUrl: `url(${ user.image ? user.image : 'http://localhost:300/user.png'})`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+    }
+
+    const handleLogout = _ => {
+        logout();
+        history.push('/login');
     }
 
     const saveThemePreference = _ => {
@@ -58,12 +61,13 @@ export default function Header(){
                 }
                 
             </div>
+                    { loading && <Spinner/> }
             <div className="flex flex-center user">
-                    <div className="user-img" style={styles}></div>
+                    <img className="user-img" src={ user.img || 'http://localhost:3000/user.png'}></img>
                     <span>{ user.name }</span>
                     <div className="user-options">
                         <ColorModeButton isDarkMode={isDarkMode} handleDarkMode={handleDarkMode}/>
-                        <button className="link">Cerrar Sesión</button>
+                        <button className="link" onClick={ handleLogout }>Cerrar Sesión</button>
                     </div>
             </div>
         </div>

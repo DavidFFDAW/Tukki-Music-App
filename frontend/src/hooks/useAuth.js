@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useHistory } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 
 function useUserAuth(){
     const { isLogged } = useUser();
-    const [, navigate] = useLocation();
+    const history = useHistory();
 
     useEffect(_ => {
-        if(!isLogged) navigate('/login');
-    });
+        if(!isLogged) history.push('/login');
+    },[])
+
 }
 
 export default useUserAuth;

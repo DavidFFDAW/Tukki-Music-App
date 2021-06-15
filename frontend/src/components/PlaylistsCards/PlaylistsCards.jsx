@@ -1,35 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import useMixes from '../../hooks/useMixes';
+import routes from '../../constants/routes';
 import Card from '../Card/Card';
-import HttpService from '../../services/http.service';
+import Spinner from '../Spinner';
 import './cards.css';
 
 export default function PlaylistsCards(){
 
-    const [playlists, setPlaylist] = useState([]);
+    const { tukkiMixes, getMyMixes } = useMixes();
+    const [ isLoading, setLoading ] = useState(false);
+    const history = useHistory();
 
-    useEffect(async () => {
-        const myPlaylists = await HttpService.get('http://192.168.1.56:8350/api/myplaylists');
-        const { playlists } = myPlaylists;  
-        console.log(myPlaylists);      
-        console.log(playlists);      
-        setPlaylist(playlists);
+    useEffect(_ => {
+        getMyMixes();
     },[]);
+
+    const handleCreatePlaylist = _ => {
+        history.push(routes.mixCreate);
+    }
 
     return (
         <>
             <div className="flex flex-center">
-                <h3 className="playlists-title">Tus playlist</h3>
+                <h3 className="playlists-title">Tus tukki-Mixes</h3>
             </div>
+                { isLoading && <Spinner /> }
+                {tukkiMixes.length === 0 && 
+                    <div className="flex flex-center">
+                        <div>
+                            <h4 className="subtitle"><strong>Ooops... </strong> No tienes Mixes</h4>
+                            <button className="btn btn-primary down" onClick={ handleCreatePlaylist }>Crear nuevo Mix</button>
+                        </div>
+                    </div> 
+                }
             <div className="grid-playlists">
                 {
-                    playlists.map(playlist => {
+                    tukkiMixes.map(mix => {
                         return (                          
                             <Card 
-                                key={playlist.id} 
-                                id={playlist.id} 
-                                title={playlist.name} 
-                                content={playlist.description || ''}
-                                href="/user/playlist/"
+                                key={mix.id} 
+                                id={mix.id} 
+                                title={mix.name} 
+                                content={mix.description || ''}
+                                href="/user/playlist"
                             ></Card>
                         )
                     })

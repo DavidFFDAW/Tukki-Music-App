@@ -1,11 +1,11 @@
 import HttpService from './http.service';
-const endpoint = 'http://localhost:8350';
+import API from '../constants/endpointAPI';
 
 async function attemptRegisterUser ({ name, username, email, password, repeatPassword }){
   
   try{
 
-    const { token } = await HttpService.post(`${endpoint}/register`, {
+    const { token } = await HttpService.post(`${API}/register`, {
       name,
       username,
       password,

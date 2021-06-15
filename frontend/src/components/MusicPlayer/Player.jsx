@@ -67,7 +67,7 @@ export default function MusicPlayer({ width }){
             <div className="flex flex-center">
                 <progress value="0" max="0" ref={progressBar} onClick={ handleProgressBarClick }></progress>
             </div>
-            <audio className="disp:none" onLoad={ handleAudioLoad } src={ getPlayingSong()[0] } data-current="0" ref={ audio } onTimeUpdate={ handleTimeUpdate } onCanPlay={ handleAudioCanPlay } autoPlay></audio>
+            <audio className="disp:none" onLoad={ handleAudioLoad } src="" data-current="0" ref={ audio } onTimeUpdate={ handleTimeUpdate } onCanPlay={ handleAudioCanPlay } autoPlay></audio>
         </div>
     );
 

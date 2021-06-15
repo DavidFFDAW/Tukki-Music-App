@@ -1,33 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'wouter';
-import { Data } from '../../data-faker';
+import React, { useEffect, useState } from 'react';
+import useMixes from '../../hooks/useMixes';
+import { useHistory, Link } from 'react-router-dom';
+import routes from '../../constants/routes';
+import Spinner  from '../../components/Spinner'
+
 import './sidenav.css';
 
 function PlaylistSidenav () {
-    const [playlists,setPlaylist] = useState([]);
 
-    useEffect(_ => {
-        setPlaylist(Data.playlists);
-    })
+    const history = useHistory();
+    const { tukkiMixes, getMyMixes } = useMixes();
+    const [ isLoading, setLoading ] = useState(false);
 
+    useEffect(() => {
+        getMyMixes();
+    },[]);
+
+    const handleClick = ev => {
+        history.push(`/user/playlist/${ ev.target.id }`);
+    }
+
+    
     return (
         <div className="show-sidenav">
 
             <div className="sidenav">
                 <div className="sidenav-img-container">
-                    <img src="http://localhost:3500/tukki.png"></img>
+                    <img src="http://localhost:3000/tukki.png"></img>
+                    <div className="flex flex-center down sidenav-create-mix">
+                        <Link className="btn btn-primary" to={ routes.mixCreate }>Crear un nuevo Mix</Link>
+                    </div>
                 </div>
+                
                 <div className="sidenav-playlists-container">
-                    <div className="playlist"><span className="quicksand">Every Song I know</span></div>
-                    <div className="playlist"><span className="quicksand">Spanish</span></div>
-                    <div className="playlist"><span className="quicksand">Films and Stuff</span></div>
-                    <div className="playlist"><span className="quicksand">El Madrileño</span></div>
-                    <div className="playlist"><span className="quicksand">The Hard Rock</span></div>
-                    <div className="playlist"><span className="quicksand">El sonido de una decada</span></div>
+                    { isLoading && <Spinner/> }
+                {
+                    tukkiMixes.map(mix => {
+                        return (
+                            <div className="playlist" key={ mix.id } id={ mix.id } onClick={ handleClick }><span className="quicksand">{ mix.name }</span></div>
+                        );
+                    })
+                }
                 </div>
             </div>
         </div>
     )
 }
 
-export default PlaylistSidenav;
+export default React.memo(PlaylistSidenav);

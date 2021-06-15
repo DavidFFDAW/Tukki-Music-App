@@ -7,7 +7,7 @@ import MusicPlayer from '../components/MusicPlayer/Player';
 import checkAuth from '../hooks/useAuth';
 
 export default function HomePage(){
-    //checkAuth();
+    checkAuth();
 
     return(
         <>

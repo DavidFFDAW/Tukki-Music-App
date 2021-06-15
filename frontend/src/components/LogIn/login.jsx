@@ -32,7 +32,7 @@ export default function LogIn({ onLogin }){
                 <form className="login-form" onSubmit={handleSubmit}>
                     <div className="inner-box">
                         <div className="flex flex-space-btw">
-                            <div className="color-block"><img src="http://localhost:3500/tukki.png"/></div>
+                            <div className="color-block"><img src="http://localhost:3000/tukki.png"/></div>
                             <div className="content">
                                 <p>Miles de playlists te esperan.<br/>
                                 Inicia sesión o crea una cuenta para empezar a disfrutar
@@ -40,18 +40,15 @@ export default function LogIn({ onLogin }){
 
                                 <div>
                                     <label>Correo:</label>
-                                    <input type="email" autoComplete="current-password" onChange={ (ev) => setUsername(ev.target.value) } value={username}/>
+                                    <input type="email" onChange={ (ev) => setUsername(ev.target.value) } value={username}/>
                                 </div>
                                 <div>
                                     <label>Contraseña:</label>
-                                    <input type="password" onChange={ (ev) => setPassword(ev.target.value)} value={password}/>
+                                    <input type="password" autoComplete="current-password" onChange={ (ev) => setPassword(ev.target.value)} value={password}/>
                                 </div>
                                 <div className="flex flex-space-btw btn-div">
                                     <Link type="button" className="btn btn-transparent" to="/register">Registrarme</Link>
                                     <button type="submit" className="btn btn-primary">Iniciar sesión</button>
-                                </div>
-                                <div className="flex flex-center">
-                                    <a>He olvidado mi contraseña</a>
                                 </div>
                             </div>
                         </div>

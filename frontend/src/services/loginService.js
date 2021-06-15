@@ -1,9 +1,9 @@
 import HttpService from './http.service';
-const endpoint = 'http://192.168.1.56:8350';
+import API from '../constants/endpointAPI';
 
 async function attemptLogIn ({ username, password }){
     try{
-        const { token } = await HttpService.post(`${endpoint}/api/login`, { email: username, password });
+        const { token } = await HttpService.post(`${API}/api/login`, { email: username, password });
         return token;
         
     } catch (error){

@@ -5,8 +5,8 @@ const Context = React.createContext({});
 export function UserContextProvider({ children }){
 
     const [user, setUser] = useState({
-        name: '',
-        type: '',
+        name: 'name',
+        type: 'artist',
         img: '',
     });
     const [jwt, setJWT] = useState(

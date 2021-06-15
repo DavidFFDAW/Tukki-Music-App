@@ -15,6 +15,7 @@ import ArtistAlbums from './pages/ArtistAlbums';
 import ArtistSongs from './pages/ArtistSongs';
 import ArtistSongUpload from './pages/ArtistSongUpload';
 import ArtistAlbumCreation from './pages/ArtistAlbumCreation';
+import MixCreation from './pages/MixCreation';
 
 import { UserContextProvider } from './context/UserContext';
 import { SongContextProvider } from './context/SongContext';
@@ -37,20 +38,42 @@ function App() {
           <Router>
             <Switch>
               <SongContextProvider>
-                <Route path='/' exact component={ LogIn }></Route>
-                <Route path={ ROUTES.login } exact component={ LogIn }/>
-                <Route path={ ROUTES.register } exact component={ Register }/>
+                <Route path='/' exact>
+                  <LogIn></LogIn>
+                </Route>
+                <Route path={ ROUTES.login } exact>
+                  <LogIn></LogIn>
+                </Route>
+                <Route path={ ROUTES.register } exact>
+                  <Register></Register>
+                </Route>
                 <Route path="/user">
-                  { checkAuth() }
                   <Header></Header>
                   <Switch>
-                    <Route path={ ROUTES.home } exact component={ HomePage }></Route>
-                    <Route path={ ROUTES.playlist } exact component={ PlaylistPage }></Route>
-                    <Route path={ ROUTES.artistmenu } exact component={ ArtistMenuPage }></Route>
-                    <Route path={ ROUTES.artistAlbums } exact component={ ArtistAlbums }></Route>
-                    <Route path={ ROUTES.artistSongs } exact component={ ArtistSongs }></Route>
-                    <Route path={ ROUTES.albumCreate } exact component={ ArtistAlbumCreation }></Route>
-                    <Route path={ ROUTES.songUpload } exact component={ ArtistSongUpload }></Route>
+                    <Route path={ ROUTES.home } exact>
+                      <HomePage />
+                    </Route>
+                    <Route path={ ROUTES.mixCreate } exact>
+                      <MixCreation/>
+                    </Route>
+                    <Route path={ ROUTES.playlist } exact>
+                      <PlaylistPage />
+                    </Route>
+                    <Route path={ ROUTES.artistmenu } exact>
+                      <ArtistMenuPage />
+                    </Route>
+                    <Route path={ ROUTES.artistAlbums } exact>
+                      <ArtistAlbums />
+                    </Route>
+                    <Route path={ ROUTES.artistSongs } exact >
+                      <ArtistSongs />
+                    </Route>
+                    <Route path={ ROUTES.albumCreate } exact>
+                      <ArtistAlbumCreation />
+                    </Route>
+                    <Route path={ ROUTES.songUpload } exact>
+                      <ArtistSongUpload />
+                    </Route>
                   </Switch>
                   <MusicPlayer width="100%"></MusicPlayer>
                 </Route>

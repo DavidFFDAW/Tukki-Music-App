@@ -1,7 +1,11 @@
 import Card from "../components/Card/Card";
 import Album from "../components/Album/Album";
+import checkAuth from "../hooks/useAuth";
+
+
 
 export default function ArtistAlbumList(){
+    checkAuth();
     return (
         <>
             <div className="flex flex-center pad-top">
