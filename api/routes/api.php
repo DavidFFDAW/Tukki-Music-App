@@ -30,6 +30,8 @@ Route::group(['middleware' => 'cors'], function () {
         Route::get('/songs', [ApiController::class, 'getSongs']);
 
         Route::get('/myplaylists', [PlaylistController::class, 'getUserPlaylist']);
+        Route::get('/playlists/{id}/data', [PlaylistController::class, 'getPlaylistByIdData']);
+        Route::get('/playlists/{id}/songs', [PlaylistController::class, 'getPlaylistByIdSongs']);
         Route::post('/playlist/new', [PlaylistController::class, 'createNewPlaylist']);
 
 

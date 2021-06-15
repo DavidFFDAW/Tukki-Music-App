@@ -18,6 +18,6 @@ class Song extends Model
 
     public function playlists()
     {
-        return $this->belongsToMany(Playlist::class)->using(PlaylistSong::class);
+        return $this->belongsToMany(Playlist::class, 'playlists_songs')->using(PlaylistSong::class);
     }
 }

@@ -19,6 +19,48 @@ class PlaylistController extends Controller
         return response()->json(['playlists' => $myPlaylists], 200);
     }
 
+    public function getPlaylistByIdData(Request $request, $id)
+    {
+        $user = $this->getUserFromToken($request);
+
+        $playlist = Playlist::find($id);
+
+        if (!$playlist) return response()->json([
+            'error' => 'Not found Playlist',
+        ], 404);
+
+        if ($playlist->user->id !== $user->id) return response()->json([
+            'error' => 'This playlist does not belong to the logged user',
+        ], 403);
+
+        return response()->json(['data' => [
+            'name' => $playlist->name,
+            'description' => $playlist->description,
+            'image' => $playlist->image,
+
+        ]], 200);
+    }
+
+
+    public function getPlaylistByIdSongs(Request $request, $id)
+    {
+        $user = $this->getUserFromToken($request);
+
+        $searchingPlaylist = Playlist::find($id);
+
+        if (!$searchingPlaylist) return response()->json([
+            'error' => 'Not found Playlist',
+        ], 404);
+
+        if ($searchingPlaylist->user->id !== $user->id) return response()->json([
+            'error' => 'This playlist is not belonged by this user',
+        ], 403);
+
+        return response()->json([
+            'songs' => $searchingPlaylist->songs,
+        ], 200);
+    }
+
     public function createNewPlaylist(Request $request)
     {
         $user = $this->getUserFromToken($request);
