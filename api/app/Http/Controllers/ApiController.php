@@ -10,35 +10,25 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function getSongs()
+    public function getSearch(Request $request)
     {
-        $songs = Song::all();
+        if (!$request->term) return response()->json([
+            'error' => 'Cannot search without a term',
+        ], 400);
 
-        return response()->json(['response' => $songs], 200);
-    }
+        $searchedTerm = '%' . $request->term . '%';
 
-    public function getUsers()
-    {
-        $users = User::all();
+        $songsWithTerm = Song::where('name', 'like', $searchedTerm)->limit(10)->get();
 
-        return response()->json(['response' => $users]);
-    }
+        foreach ($songsWithTerm as $song) {
+            $song['uri'] = asset('songs/' . $song->url);
+        }
 
-    public function getAlbums()
-    {
-        $users = Album::all();
+        $usersWithTerm = User::where('name', 'like', $searchedTerm)->limit(10)->get();
 
-        return response()->json(['response' => $users]);
-    }
-
-    public function getPlaylists()
-    {
-        $users = Playlist::all();
-
-        return response()->json(['response' => $users]);
-    }
-    public function getCSRF()
-    {
-        return response()->json(['response' => csrf_token()]);
+        return response()->json([
+            'songs' => $songsWithTerm,
+            'users' => $usersWithTerm,
+        ], 200);
     }
 }

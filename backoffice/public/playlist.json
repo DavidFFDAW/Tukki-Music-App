@@ -1,9 +1,0 @@
-{
-    "playlists": [
-        { "id": 1, "name": "Paco mer", "songs": 2 },
-        { "id": 2, "name": "Las cansione de mi vecina la loca", "songs": 2 },
-        { "id": 3, "name": "Las cansione de mi vecina la loca", "songs": 12 },
-        { "id": 4, "name": "duchate que hueles a salon del manga", "songs": 6 },
-        { "id": 5, "name": "Every song I know", "songs": 4 }
-    ]
-}

@@ -16,6 +16,11 @@ class Song extends Model
         return $this->belongsTo(Album::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'artist_id', 'id');
+    }
+
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class, 'playlists_songs')->using(PlaylistSong::class);

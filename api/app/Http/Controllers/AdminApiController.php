@@ -39,7 +39,7 @@ class ApiController extends Controller
 
         if (!$users) return response()->json([
             'error' => 'Users not found',
-        ], 200);
+        ], 404);
 
         return response()->json([
             'users' => $users,

@@ -133,4 +133,20 @@ class UserController extends Controller
         $userFromToken->last_listened_to = $request->song_name;
         $userFromToken->save();
     }
+
+    public function makePetition(Request $request)
+    {
+        $userPetitioning = $this->getUserFromToken($request);
+
+        if (!$userPetitioning) return response()->json([
+            'error' => 'Something went wrong',
+        ], 400);
+
+        $userPetitioning->petition_status = 'pending';
+        $userPetitioning->updated_at = now();
+
+        return response()->json([
+            'user' => $userPetitioning,
+        ], 200);
+    }
 }

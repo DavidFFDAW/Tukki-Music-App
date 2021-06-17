@@ -14,7 +14,6 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \App\Http\Middleware\Cors::class,
         \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
@@ -42,6 +41,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:api',
+            //\App\Http\Middleware\Cors::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -54,6 +54,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'web.admin' => \App\Http\Middleware\WebAdminAccessMiddleware::class,
+        'web.artist' => \App\Http\Middleware\WebArtistAccessMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'cors' => \App\Http\Middleware\Cors::class,
         'jwt' => \App\Http\Middleware\JwtMiddleware::class,

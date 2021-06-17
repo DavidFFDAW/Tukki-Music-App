@@ -79,4 +79,28 @@ class PlaylistController extends Controller
 
         return response()->json(['playlists' => $user->playlists]);
     }
+
+    public function updatePlaylistInfo(Request $request, $id)
+    {
+        $user = $this->getUserFromToken($request);
+
+        if (!$request->name || !$request->description) return response()->json([
+            'error' => 'Not enough fields to make the petition',
+        ], 400);
+
+        $playlist = Playlist::find($id);
+
+        if (!$playlist) return response()->json([
+            'error' => 'Playlist could not be found :('
+        ], 404);
+
+        $playlist->name = $request->name;
+        $playlist->description = $request->description;
+
+        $playlist->save();
+
+        return response()->json([
+            'playlists' => $user->playlists,
+        ], 200);
+    }
 }

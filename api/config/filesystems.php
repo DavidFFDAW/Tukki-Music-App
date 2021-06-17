@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'songs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -67,9 +74,10 @@ return [
     */
 
     'links' => [
-        public_path('albums') => storage_path('app/public'),
+        /*public_path('albums') => storage_path('app/public'),
         public_path('avatars') => storage_path('app/public'),
-        public_path('playlists') => storage_path('app/public'),
+        public_path('playlists') => storage_path('app/public'),*/
+        public_path('songs') => storage_path('app/songs'),
     ],
 
 ];

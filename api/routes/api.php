@@ -31,6 +31,7 @@ Route::group(['middleware' => 'cors'], function () {
 
         Route::get('/myplaylists', [PlaylistController::class, 'getUserPlaylist']);
         Route::get('/playlists/{id}/data', [PlaylistController::class, 'getPlaylistByIdData']);
+        Route::put('/playlist/{id}', [PlaylistController::class, 'updatePlaylistInfo']);
         Route::get('/playlists/{id}/songs', [PlaylistController::class, 'getPlaylistByIdSongs']);
         Route::post('/playlist/new', [PlaylistController::class, 'createNewPlaylist']);
 
@@ -38,6 +39,8 @@ Route::group(['middleware' => 'cors'], function () {
         Route::get('/user', [UserController::class, 'getAuthenticatedUser']);
         Route::put('/user/update', [UserController::class, 'updateUserInfo']);
         Route::put('/user/listened', [UserController::class, 'updateLastListenedTo']);
+        Route::post('/user/search', [ApiController::class, 'getSearch']);
+        Route::put('/user/petition', [UserController::class, 'makePetition']);
 
 
         Route::group(['middleware' => ['admin']], function () {
