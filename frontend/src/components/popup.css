@@ -1,22 +1,10 @@
 .modal {
-    font-size: 12px;
-  }
-  .modal > .header {
-    width: 100%;
-    border-bottom: 1px solid gray;
-    font-size: 18px;
-    text-align: center;
-    padding: 5px;
-  }
-  .modal > .content {
-    width: 100%;
-    padding: 10px 5px;
-  }
-  .modal > .actions {
-    width: 100%;
-    padding: 10px 5px;
-    margin: auto;
-    text-align: center;
+  position: fixed;
+  background-color: var(--tukki-solid-intense-black);
+  border-radius: 25px;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 40px;
   }
   .modal > .close {
     cursor: pointer;

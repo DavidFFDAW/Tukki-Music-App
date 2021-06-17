@@ -17,13 +17,15 @@ export default function useMixes(){
         ;
     },[ setTukkiMixes ]);
 
-    /* const getCurrentPlaylist = useCallback(_ => {
+    const setMixes = useCallback(mixes => {
+        setTukkiMixes(mixes);
 
-    },[ setCurrentMix]); */
+    },[ setTukkiMixes ]);
 
     return {
         getMyMixes,
         tukkiMixes,
+        setMixes,
         currentMix,
     }
 

@@ -7,13 +7,13 @@ export default function LightDarkModeButton ({ isDarkMode,handleDarkMode }) {
     if(isDarkMode){
         return (
             <button className="link" onClick={ handleDarkMode }>
-                <Brightness7Icon/> <span>Claro</span>
+                <Brightness7Icon/> <span className="intense-black">Claro</span>
             </button>
         );        
     }
     return (
             <button className="link" onClick={ handleDarkMode }>
-                <Brightness4Icon/> <span>Oscuro</span>
+                <Brightness4Icon/> <span className="intense-black">Oscuro</span>
             </button>
     );
 }

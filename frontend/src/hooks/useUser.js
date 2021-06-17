@@ -1,9 +1,7 @@
 import { useContext, useCallback } from 'react';
 import Context from './../context/UserContext';
-import attemptLogIn from '../services/loginService';
-import attemptRegister from '../services/registerService';
+import { attemptLogIn, attemptRegisterUser, getCurrentUser } from '../services/user.service';
 import SessionStorageService from '../services/session.storage.service';
-import HttpService from '../services/http.service';
 
 
 export default function useUser(){
@@ -33,15 +31,15 @@ export default function useUser(){
         alert('Las contraseñas no coinciden');
         return;
       }
-      attemptRegister(credentials).then(jwt => {
+      attemptRegisterUser(credentials).then(jwt => {
           SessionStorageService.addToken(jwt);
           setJWT(jwt);
       })
     },[setJWT]);
 
-    const setCurrentUser = useCallback(async _ => {
-        const { user } = await HttpService.get('http://192.168.1.56:8350/api/user') 
+    const setCurrentUser = useCallback(user => {
         setUser(user);
+        
     },[setUser]);
 
     return {

@@ -17,7 +17,7 @@ export default function LogIn({ onLogin }){
             history.push(routes.home);
             onLogin && onLogin();
         }
-    },[isLogged, onLogin]);
+    },[isLogged, history, onLogin]);
 
     const handleSubmit = (ev) => {
         ev.preventDefault();

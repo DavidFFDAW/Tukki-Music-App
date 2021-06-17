@@ -1,13 +1,14 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState } from 'react';
 
 const Context = React.createContext({});
 
 export function UserContextProvider({ children }){
 
     const [user, setUser] = useState({
-        name: 'name',
-        type: 'artist',
-        img: '',
+        name: 'UserName',
+        img: null,
+        type: 'normal',
+        petition_status: 'pending',
     });
     const [jwt, setJWT] = useState(
         () => window.sessionStorage.getItem('jwt')

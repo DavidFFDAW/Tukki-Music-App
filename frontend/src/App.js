@@ -16,10 +16,11 @@ import ArtistSongs from './pages/ArtistSongs';
 import ArtistSongUpload from './pages/ArtistSongUpload';
 import ArtistAlbumCreation from './pages/ArtistAlbumCreation';
 import MixCreation from './pages/MixCreation';
+import SearchPage from './pages/SearchPage';
 
 import { UserContextProvider } from './context/UserContext';
 import { SongContextProvider } from './context/SongContext';
-import checkAuth from './hooks/useAuth';
+
 import './App.css';
 
 
@@ -61,6 +62,9 @@ function App() {
                     </Route>
                     <Route path={ ROUTES.artistmenu } exact>
                       <ArtistMenuPage />
+                    </Route>
+                    <Route path={ `${ROUTES.search}` } exact>
+                      <SearchPage />
                     </Route>
                     <Route path={ ROUTES.artistAlbums } exact>
                       <ArtistAlbums />

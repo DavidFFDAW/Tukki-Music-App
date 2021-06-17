@@ -8,13 +8,15 @@
     box-shadow: 0 2px 15px var(--tukki-black);
     background-color: var(--tukki-white);
 }
+.mix-name{ color: var(--tukki-solid-intense-black); }
+body.dark .mix-name{ color: var(--tukki-yellow); }
 body.dark .info{
     background-color: var(--tukki-solid-intense-black);
 }
 .info .info-image{
     width: 30%;
     height: 340px;
-    padding: 0 15px;
+    padding: 0 0;
     border-radius: 10px;
     background-color: var(--tukki-blue);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Song from './Song';
-import UserInfo from './UserInfo/UserInfo';
+import MixInfo from './UserInfo/UserInfo';
 import { getCurrentMixData, getCurrentTukkiMixSongs } from "../services/mixes.service";
 import './playlists.css';
 
@@ -20,7 +20,7 @@ function Playlist ({ id  }) {
 
     return (
         <>
-            <UserInfo img={mixData.image} name={ mixData.name } description={ mixData.description }></UserInfo>
+            <MixInfo img={mixData.image} name={ mixData.name } description={ mixData.description } id={ id }/>
             <div className="playlist-container">
                 <div className="flex flex-space-btw space upper">
                     <span className="width-auto">Play</span>

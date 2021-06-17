@@ -22,8 +22,23 @@ function getCurrentMixData(id){
         })
         .catch(err => console.error(err.message));
 }
+
+function createNewMix({ name, description }){
+    return HttpService.post(`${API}/api/playlist/new`,{ name, description })
+        .then(({ playlists }) => playlists)
+        .catch(err => console.error(err.message));
+}
+
+function updateMix({ id, name, description}){
+    return HttpService.put(`${API}/api/playlist/${id}`,{ name, description})
+        .then(({ playlists }) => playlists)
+        .catch(err => console.error(err.message));
+}
+
 export {
     getMixes,
     getCurrentMixData,
+    createNewMix,
+    updateMix,
     getCurrentTukkiMixSongs,
 }

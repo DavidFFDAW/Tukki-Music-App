@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import SongContext from '../context/SongContext';
+import useSong from '../hooks/useSong';
 
-export default function Song({ title, artist, album, uri, diration }){
+export default function Song({ title, artist, album, uri, duration }){
 
-    const { setPlaying } = useContext(SongContext);
+    const { setPlayingSong } = useSong();
 
     const handlePlay = event => {
+        event.preventDefault();
         console.log(uri);
-        /* setPlaying({uri}); */
+        if(!uri || !uri.includes('http:')){
+            alert('Unable to play this song :(');
+            return;
+        }
+        setPlayingSong(uri);
     }
 
     return (
@@ -16,7 +21,8 @@ export default function Song({ title, artist, album, uri, diration }){
             <div className="song flex flex-space-btw space">
                 <span className="width-auto icon" onClick={ handlePlay }><PlayCircleFilledIcon></PlayCircleFilledIcon></span>
                 <span>{ title }</span>
-                <span>{ artist }</span>
+                { artist && <span>{ artist }</span> }
+                { duration && <span>{ duration }</span> }
                 <span>{ uri }</span>
             </div>
         </>

@@ -34,24 +34,21 @@ body.dark .head-bg{ background-color: var(--tukki-intense-black); }
     cursor: pointer;
     transition: all 0.4s;
 }
-.user:hover{ border-radius: 25px 25px 0 0; border: 2px solid var(--tukki-black); border-bottom: none; }
 
 .user:hover .user-options{
     position: absolute;
     width: 166px;
-    top: 39px;
-    right: 16px;
+    top: 35px;
+    right: 26px;
     opacity: 1;
     z-index: 99;
 }
 .user .user-options{
     position: absolute;
     background-color: var(--tukki-white);
-    border-radius: 0 0 25px 25px;
-    border: 1px solid var(--tukki-black);
-    border-top: none;
+    width: 200px;
     top: -850px;
-    right: 14px;
+    right: 25px;
     opacity: 0;
     z-index: 0;
     transition: all 0.5s;
@@ -61,7 +58,7 @@ body.dark .head-bg{ background-color: var(--tukki-intense-black); }
     background-color: transparent;
     border: none;
     outline: none;
-    color: var(--tukki-black);
+    color: var(--tukki-solid-intense-black);
     font-size: 15px;
     text-transform: uppercase;
     display: flex;
@@ -71,18 +68,20 @@ body.dark .head-bg{ background-color: var(--tukki-intense-black); }
     box-sizing: border-box;
     padding-right: 20px;
 }
-.user .user-options .link:first-child { margin-top: 10px }
+/* .user .user-options .link:first-child { margin-top: 10px } */
 .user .user-options .link:last-child { border-radius: 0 0 25px 25px; }
 .user .user-options .link:hover{
     background-color: var(--tukki-inputs);
 }
 .user-img{
+    padding: 0;
     width: 25px;
     height: 25px;
     background-color: var(--tukki-blue);
     border-radius: 50%;
     border: 2px solid var(--tukki-blue);
 }
+body.dark .user-img{ background-color: var(--tukki-yellow); border: 2px solid var(--tukki-solid-black); }
 .user span {
     box-sizing: border-box;
     color: var(--tukki-black);

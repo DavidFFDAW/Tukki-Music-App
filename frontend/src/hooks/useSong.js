@@ -4,18 +4,18 @@ import SongContext from '../context/SongContext';
 
 export default function useUser(){
     
-    const { songPlaying, setSongPlaying } = useContext(SongContext);
+    const { currentSong, setCurrentSong } = useContext(SongContext);
 
-    const setPlaying = useCallback(({ song }) => {
-        setSongPlaying(song);
-    },[songPlaying]);
+    const setPlayingSong = useCallback((song) => {
+        setCurrentSong(song);
+    },[setCurrentSong]);
 
     const getPlayingSong = useCallback(_ => {
-        return songPlaying;
-    },[setPlaying]);
+        return currentSong;
+    },[currentSong,setCurrentSong]);
 
     return {
-        setPlaying,
+        setPlayingSong,
         getPlayingSong,
     };
 }

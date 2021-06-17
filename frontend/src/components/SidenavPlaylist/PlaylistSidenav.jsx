@@ -17,6 +17,7 @@ function PlaylistSidenav () {
     },[]);
 
     const handleClick = ev => {
+        console.log(ev.target.id);
         history.push(`/user/playlist/${ ev.target.id }`);
     }
 

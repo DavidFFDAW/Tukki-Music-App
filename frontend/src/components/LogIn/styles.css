@@ -33,6 +33,22 @@
   .color-block{
     width: 50%;
   }
+  .mix-image{
+    position: relative;
+    top: 0;
+    width: 35%;
+    height: 250px;
+    margin: 0 auto;
+    margin-top: -25%;
+  }
+  .mix-image img{
+    width: 90%;
+    height: 100%;
+  }
+  .mix-image button{
+    width: 90%;
+    margin: 0 auto;
+  }
   .login-form p{
     color: var(--tukki-subtitles);
     margin-bottom: 25px;
@@ -63,9 +79,9 @@
   body.dark .login-form label{
       color: var(--tukki-yellow);
   }
-  .login-form input{
+  .login-form input, .login-form textarea {
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 12px;
     background-color: var(--tukki-inputs);
     border: 1px solid #747474;
     outline: none;
@@ -73,10 +89,10 @@
     font-weight: 700px;
     font-size: 16px;
     box-sizing: border-box;
-    padding-left: 12px;
     border-radius: 5px;
     margin-bottom: 20px;
   }
+  .login-form textarea { height: 120px; }
   body.dark .login-form input{
       background-color: var(--tukki-inputs);
   }
