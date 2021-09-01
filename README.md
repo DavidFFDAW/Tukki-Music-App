@@ -55,21 +55,21 @@ Algunas imágenes de la aplicación:
 
  -  Login Light
 
-![Login Light](./assets/login-light.jpg)
+![Login Light](./assets/login-light.JPG)
 
  -  Login Dark
 
-![Login Dark](./assets/login-dark.jpg)
+![Login Dark](./assets/login-dark.JPG)
 
  -  App Funcionando
 
-![App](./assets/app-3.jpg)
+![App](./assets/app-3.JPG)
 
 ## Proxy 
 
 El problema de las peticiones asincronas de CORS se podria solucionar utilizando un proxy en el propio `package.json`
 
-![Proxy](./assets/proxy.jpg)
+![Proxy](./assets/proxy.JPG)
 
 ## Author
 
